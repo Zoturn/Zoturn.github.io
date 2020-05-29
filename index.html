@@ -35,7 +35,6 @@
     function mousePositionGenerate(event) {
         pointX = event.clientX
         pointY = event.clientY
-        generateFigure(pointX, pointY)
     }
 
     document.addEventListener("click", mousePositionGenerate);
@@ -68,6 +67,15 @@
 
     slower.addEventListener("click", onClickSlower);
 
+    let Container = new PIXI.Graphics();
+    Container.lineStyle(0);
+    Container.beginFill(0x000000);
+    Container.drawRect(0, 0, 300, 300);
+    Container.endFill();
+
+    Container.interactive = true;
+    Container.buttonMode = true;
+
     let generateFigure = (setX, setY) => {
         let which = Math.floor(Math.random() * Math.floor(4))
 
@@ -89,11 +97,11 @@
                 rectangle.buttonMode = true;
 
 
-                function onClick1() {
-                    app.stage.removeChild(rectangle);
-                }
+            function onClick1() {
+                app.stage.removeChild(rectangle);
+            }
 
-                rectangle.on('pointerdown', onClick1);
+                rectangle.on('click', onClick1);
 
                 app.stage.addChild(rectangle);
 
@@ -113,11 +121,11 @@
                 circle.interactive = true;
                 circle.buttonMode = true;
 
-                function onClick2() {
-                    app.stage.removeChild(circle);
-                }
+            function onClick2() {
+                app.stage.removeChild(circle);
+            }
 
-                circle.on('pointerdown', onClick2);
+                circle.on('click', onClick2);
 
                 app.stage.addChild(circle);
 
@@ -136,34 +144,11 @@
                 ellipse.interactive = true;
                 ellipse.buttonMode = true;
 
-                function onClick3() {
-                    app.stage.removeChild(ellipse);
-                }
+            function onClick3() {
+                app.stage.removeChild(ellipse);
+            }
 
-                ellipse.on('pointerdown', onClick3);
-
-                app.stage.addChild(ellipse);
-
-                arr.push(ellipse);
-                break;
-            case 3:
-
-                let triangle = new PIXI.Graphics();
-                ellipse.lineStyle(0);
-                ellipse.beginFill(colors[colorIndex], 1);
-                ellipse.drawEllipse(0, 0, 15, 20);
-                ellipse.endFill();
-                ellipse.x = setX;
-                ellipse.y = setY
-
-                ellipse.interactive = true;
-                ellipse.buttonMode = true;
-
-                function onClick3() {
-                    app.stage.removeChild(ellipse);
-                }
-
-                ellipse.on('pointerdown', onClick3);
+                ellipse.on('click', onClick3);
 
                 app.stage.addChild(ellipse);
 
@@ -171,6 +156,15 @@
                 break;
         }
     }
+
+    function onClickContainer(event) {
+        console.log('>>>555555555', event.data.global)
+        generateFigure(event.data.global.x, event.data.global.y)
+    }
+
+    Container.on('click', onClickContainer);
+
+    app.stage.addChild(Container);
 
     let generateInterval = setInterval(() => {
 
@@ -181,8 +175,8 @@
     }, generated)
 
     function onClickLes() {
-        console.log('>>>', );
-        generated = generated + 200
+        console.log('>>>',);
+        generated = generated + 300
         clearInterval(generateInterval)
 
         generateInterval = setInterval(() => {
@@ -197,9 +191,9 @@
     less.addEventListener("click", onClickLes);
 
     function onClickMore() {
-        console.log('>>>!!!!', );
+        console.log('>>>!!!!',);
         if (generated > 600) {
-            generated = generated - 200
+            generated = generated - 300
 
             clearInterval(generateInterval)
 
