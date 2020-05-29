@@ -158,7 +158,6 @@
     }
 
     function onClickContainer(event) {
-        console.log('>>>555555555', event.data.global)
         generateFigure(event.data.global.x, event.data.global.y)
     }
 
@@ -175,7 +174,6 @@
     }, generated)
 
     function onClickLes() {
-        console.log('>>>',);
         generated = generated + 300
         clearInterval(generateInterval)
 
@@ -191,7 +189,6 @@
     less.addEventListener("click", onClickLes);
 
     function onClickMore() {
-        console.log('>>>!!!!',);
         if (generated > 600) {
             generated = generated - 300
 
