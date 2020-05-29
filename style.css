@@ -1,0 +1,33 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#faster, #slower, #more, #less {
+    padding: 10px;
+    position: absolute;
+    top: 310px;
+    cursor: pointer;
+}
+
+#slower {
+    left: 177px;
+    background-color: red;
+}
+
+#faster
+{
+    left: 244px;
+    background-color: green;
+}
+
+#less {
+    left: 0px;
+    background-color: red;
+}
+
+#more
+{
+    left: 48px;
+    background-color: green;
+}
