@@ -1527,6 +1527,7 @@ footer {
 
 @media screen and (max-width: 760px) {
   footer {
+    pointer-events: none;
     padding: 0 0 6.4vw;
     justify-content: center; }
     footer .privacy {
